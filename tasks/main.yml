@@ -1,2 +1,7 @@
 ---
 # tasks file for acme-tiny-cron
+
+####
+##0 0 1 * * /usr/local/bin/acme_renew_{{ app__acme__tiny__domain }}.sh 2>> {{ app__acme__tiny__log_dir }}/acme_renew_{{ app__acme__tiny__domain }}.log
+#####
+#
