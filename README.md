@@ -1,6 +1,24 @@
 Role Name
 =========
 
+This is an ansible role for creating cron jobs for the recreation of your cerificates for a certain domain.
+
+The role is meant to be run for a system accessible from the web. It will make the request with "Let's Encrypt" from an existing csr (see acme-tiny-setup), solve the challenge on the server's well-known webfolder and then put the resulting certificates in the openssl configuration directory.
+
+It takes over the work of zwischenloesung.acme-tiny which must be run at least once as it is base on the preparations of that role and only repeats the recreation of the certificate once a month (so no ansible "master" etc. has to be involved later).
+
+Promise
+-------
+
+Sure, this role may change in the future, but we will only expand features to not break backwards compatibility.
+
+If radical changes should become necessary, a new role will be created, probably with an 'ng' or version suffix...
+
+Installation
+------------
+
+ # ansible-galaxy install zwischenloesung.acme-tiny-cron
+
 Requirements
 ------------
 
@@ -28,9 +46,14 @@ Role Variables
 Dependencies
 ------------
 
+* zwischenloesung.acme-tiny
 
 Example Playbook
 ----------------
+
+    - hosts: servers
+      roles:
+         - zwischenloesung.acme-tiny-cron
 
 License
 -------
@@ -39,4 +62,6 @@ GPLv3
 
 Author Information
 ------------------
+
+* Michael Lustenberger at [inofix.ch](http://www.inofix.ch)
 
