@@ -1,6 +1,8 @@
 Role Name
 =========
 
+Status: DRAFT
+
 This is an ansible role for creating cron jobs for the recreation of your cerificates for a certain domain.
 
 The role is meant to be run for a system accessible from the web. It will make the request with "Let's Encrypt" from an existing csr (see acme-tiny-setup), solve the challenge on the server's well-known webfolder and then put the resulting certificates in the openssl configuration directory.
