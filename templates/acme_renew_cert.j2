@@ -1,0 +1,28 @@
+#!/bin/sh
+
+if [ -x "/bin/acme-tiny" ] ; then
+    _acme_tiny=/bin/acme-tiny
+elif [ -x "/usr/bin/acme-tiny" ] ; then
+    _acme_tiny=/usr/bin/acme-tiny
+elif [ -x "/usr/local/acme-tiny" ] ; then
+    _acme_tiny=/usr/local/bin/acme-tiny
+else
+    echo "acme-tiny seems to be missing, please install it first."
+    exit 1
+fi
+
+# make sure we collect the intermediate/ca certs only once for all the different certs
+touch -d "last month" /tmp/letsencrypt.tmp
+{% for item in app__acme__tiny__letsencrypt_certs %}
+if [ "{{ app__acme__tiny__config_dir }}/{{ item.file }}" -ot "/tmp/letsencrypt.tmp" ] ; then
+    wget -O - {{ item.url }} > {{ app__acme__tiny__config_dir }}/{{ item.file }}
+fi
+{% endfor %}
+
+# ask for a newly signed cert
+$_acme_tiny --account-key {{ app__acme__tiny__account_key }} --csr {{ app__acme__tiny__request }} --acme-dir {{ app__acme__tiny__challenge_dir }} > {{ app__acme__tiny__certificate }} || exit
+
+# install the cert as consumable for the respective services
+/bin/cp {{ app__acme__tiny__certificate }} {{ app__acme__tiny__cert_dir }}/{{ app__acme__tiny__cert_name }}.crt
+/bin/cat {{ app__acme__tiny__letsencrypt_certs }} {{ app__acme__tiny__certificate }} > {{ app__acme__tiny__cert_dir }}/{{ app__acme__tiny__cert_name }}_chain.crt
+
