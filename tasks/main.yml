@@ -4,7 +4,7 @@
 - name: 'Install a certificat renewer script for {{ app__acme__tiny__cert_name }}'
   template:
     src: 'acme_renew_cert.j2'
-    dest: '/usr/local/bin/acme_renew_{{ app__acme__tiny__cert_name }}.j2'
+    dest: '/usr/local/bin/acme_renew_{{ app__acme__tiny__cert_name }}.sh'
     owner: 'root'
     group: 'root'
     mode: '0755'
