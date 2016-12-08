@@ -53,7 +53,7 @@ Role Variables
 Dependencies
 ------------
 
-* zwischenloesung.acme-tiny
+* 'zwischenloesung.acme-tiny' - as a weak dependency, as the role must be run once at least, but the role can also be used later to fix the cronjobs.
 
 Example Playbook
 ----------------
