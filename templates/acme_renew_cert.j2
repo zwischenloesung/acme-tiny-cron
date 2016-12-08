@@ -15,7 +15,7 @@ fi
 touch -d "last month" /tmp/letsencrypt.tmp
 {% for item in app__acme__tiny__letsencrypt_certs %}
 if [ "{{ app__acme__tiny__config_dir }}/{{ item.file }}" -ot "/tmp/letsencrypt.tmp" ] ; then
-    wget -O - {{ item.url }} > {{ app__acme__tiny__config_dir }}/{{ item.file }}
+    wget -O - {{ item.url }} > "{{ app__acme__tiny__config_dir }}/{{ item.file }}"
 fi
 {% endfor %}
 
@@ -23,6 +23,6 @@ fi
 $_acme_tiny --account-key {{ app__acme__tiny__account_key }} --csr {{ app__acme__tiny__request }} --acme-dir {{ app__acme__tiny__challenge_dir }} > {{ app__acme__tiny__certificate }} || exit
 
 # install the cert as consumable for the respective services
-/bin/cp {{ app__acme__tiny__certificate }} {{ app__acme__tiny__cert_dir }}/{{ app__acme__tiny__cert_name }}.crt
-/bin/cat {{ app__acme__tiny__letsencrypt_certs }} {{ app__acme__tiny__certificate }} > {{ app__acme__tiny__cert_dir }}/{{ app__acme__tiny__cert_name }}_chain.crt
+/bin/cp "{{ app__acme__tiny__certificate }}" "{{ app__acme__tiny__cert_dir }}/{{ app__acme__tiny__cert_name }}.crt"
+/bin/cat {% for item in app__acme__tiny__letsencrypt_certs %}"{{ app__acme__tiny__config_dir }}/{{ item.file }}" {% endfor %}"{{ app__acme__tiny__certificate }}" > "{{ app__acme__tiny__cert_dir }}/{{ app__acme__tiny__cert_name }}_chain.crt"
 
