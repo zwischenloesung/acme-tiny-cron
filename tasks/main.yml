@@ -1,7 +1,22 @@
 ---
 # tasks file for acme-tiny-cron
 
-####
-##0 0 1 * * /usr/local/bin/acme_renew_{{ app__acme__tiny__domain }}.sh 2>> {{ app__acme__tiny__log_dir }}/acme_renew_{{ app__acme__tiny__domain }}.log
-#####
-#
+- name: 'Install a certificat renewer script for {{ app__acme__tiny__domain }}'
+  template:
+    src: 'acme_renew_cert.j2'
+    dest: '/usr/local/bin/acme_renew_{{ app__acme__tiny__domain }}.j2'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+
+- name: 'Write a cron job to be run once a month for certificate renewal'
+  cron:
+    name: 'acme_renew_{{ app__acme__tiny__domain }}'
+    job: '/usr/local/bin/acme_renew_{{ app__acme__tiny__domain }}.sh 2>> {{ app__acme__tiny__log_dir }}/acme_renew_{{ app__acme__tiny__domain }}.log'
+    user: '{{ app__acme__tiny__user }}'
+    minute: '{{ app__acme__tiny__cron_minute }}'
+    hour: '{{ app__acme__tiny__cron_hour }}'
+    day: '{{ app__acme__tiny__cron_day }}'
+    month: '{{ app__acme__tiny__cron_month }}'
+    weekday: '{{ app__acme__tiny__cron_weekday }}'
+
