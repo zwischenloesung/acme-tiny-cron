@@ -20,6 +20,12 @@ app__acme__tiny__cert_dir: '{{ app__acme__tiny__config_dir }}/{{ app__acme__tiny
 app__acme__tiny__request: '{{ app__acme__tiny__config_dir }}/{{ app__acme__tiny__cert_name }}.csr'
 app__acme__tiny__certificate: '{{ app__acme__tiny__config_dir }}/{{ app__acme__tiny__cert_name }}.crt'
 
+app__acme__tiny__cron_minute: 22
+app__acme__tiny__cron_hour: 04
+app__acme__tiny__cron_day: 03
+app__acme__tiny__cron_month: '*'
+app__acme__tiny__cron_weekday: '*'
+
 
 ## quick and dirty way to produce the role vars for the README:
 ##$ cat defaults/main.yml | grep -v "#" | awk 'BEGIN{meta="default="}; {if (match($1, "app.*")) { if (sub(".*{{.*", "", $2)){meta="auto"} else {meta="default="$2}; gsub("_", "\\_"); sub(":", "", $1); print "* "$1" - optional, "meta""} else {print $0}}' | grep -v -e "\*  - optional, string: default=" -e " *if" -e " *not" -e " *else" -e "^$"
