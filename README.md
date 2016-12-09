@@ -1,7 +1,7 @@
 Role Name
 =========
 
-Status: DRAFT
+Status:  DRAFT
 
 This is an ansible role for creating cron jobs for the recreation of your cerificates for a certain domain.
 
