@@ -3,16 +3,16 @@
 
 - name: 'Install a certificat renewer script for {{ app__acme__tiny__cert_name }}'
   template:
-    src: 'acme_renew_cert.j2'
-    dest: '/usr/local/bin/acme_renew_{{ app__acme__tiny__cert_name }}.sh'
+    src: 'acme-renew_cert.j2'
+    dest: '/usr/local/bin/acme-renew_{{ app__acme__tiny__cert_name }}.sh'
     owner: 'root'
     group: 'root'
     mode: '0755'
 
 - name: 'Write a cron job to be run once a month for certificate renewal'
   cron:
-    name: 'acme_renew_{{ app__acme__tiny__cert_name }}'
-    job: '/usr/local/bin/acme_renew_{{ app__acme__tiny__cert_name }}.sh 2>> {{ app__acme__tiny__log_dir }}/acme_renew_{{ app__acme__tiny__cert_name }}.log'
+    name: 'acme-renew_{{ app__acme__tiny__cert_name }}'
+    job: '/usr/local/bin/acme-renew_{{ app__acme__tiny__cert_name }}.sh 2>> {{ app__acme__tiny__log_dir }}/acme-renew_{{ app__acme__tiny__cert_name }}.log'
     user: '{{ app__acme__tiny__user }}'
     minute: '{{ app__acme__tiny__cron_minute }}'
     hour: '{{ app__acme__tiny__cron_hour }}'
