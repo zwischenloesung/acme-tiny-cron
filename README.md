@@ -44,11 +44,11 @@ Role Variables
 * app\_\_acme\_\_tiny\_\_cert\_name - optional, auto
 * app\_\_acme\_\_tiny\_\_cert\_dir - optional, auto
 * app\_\_acme\_\_tiny\_\_request - optional, auto
-* app\_\_acme\_\_tiny\_\_cron\_minute - optional, default=22
-* app\_\_acme\_\_tiny\_\_cron\_hour - optional, default=04
-* app\_\_acme\_\_tiny\_\_cron\_day - optional, default=03
-* app\_\_acme\_\_tiny\_\_cron\_month - optional, default='*'
-* app\_\_acme\_\_tiny\_\_cron\_weekday - optional, default='*'
+* app\_\_acme\_\_tiny\_\_cron\_minute - optional, default='22,44'
+* app\_\_acme\_\_tiny\_\_cron\_hour - optional, default='04'
+* app\_\_acme\_\_tiny\_\_cron\_day - optional, default='\*'
+* app\_\_acme\_\_tiny\_\_cron\_month - optional, default='\*'
+* app\_\_acme\_\_tiny\_\_cron\_weekday - optional, default='\*'
 
 Dependencies
 ------------
