@@ -22,8 +22,8 @@ app__acme__tiny__certificate: '{{ app__acme__tiny__config_dir }}/{{ app__acme__t
 
 # per default start the script every night at 4:22, the script then tests if
 # the current certificate is old or broken and does not download unneeded stuff
-app__acme__tiny__cron_minute: '22,44'
-app__acme__tiny__cron_hour: '04'
+app__acme__tiny__cron_minute: '02,22,42'
+app__acme__tiny__cron_hour: '03,04'
 app__acme__tiny__cron_day: '*'
 app__acme__tiny__cron_month: '*'
 app__acme__tiny__cron_weekday: '*'
