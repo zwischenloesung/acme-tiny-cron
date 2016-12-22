@@ -1,5 +1,7 @@
 #!/bin/sh
 
+/bin/date +'====== %Y-%m-%d %H:%M:%S ======' 1>&2
+
 if [ -x "/bin/acme-tiny" ] ; then
     _acme_tiny=/bin/acme-tiny
 elif [ -x "/usr/bin/acme-tiny" ] ; then
