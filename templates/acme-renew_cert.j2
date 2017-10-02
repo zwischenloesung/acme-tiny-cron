@@ -28,6 +28,6 @@ if [ ! -s "{{ app__acme__tiny__certificate }}" ] || [ "{{ app__acme__tiny__certi
 
     # install the cert as consumable for the respective services
     /bin/cp "{{ app__acme__tiny__certificate }}" "{{ app__acme__tiny__cert_dir }}/{{ app__acme__tiny__cert_name }}.crt"
-    /bin/cat {% for item in app__acme__tiny__letsencrypt_certs %}"{{ app__acme__tiny__config_dir }}/{{ item.file }}" {% endfor %}"{{ app__acme__tiny__certificate }}" > "{{ app__acme__tiny__cert_dir }}/{{ app__acme__tiny__cert_name }}_chain.crt"
+    /bin/cat "{{ app__acme__tiny__certificate }}" {% for item in app__acme__tiny__letsencrypt_certs %}"{{ app__acme__tiny__config_dir }}/{{ item.file }}" {% endfor %} > "{{ app__acme__tiny__cert_dir }}/{{ app__acme__tiny__cert_name }}_chain.crt"
 fi
 
