@@ -7,6 +7,11 @@ The role is meant to be run for a system accessible from the web. It will make t
 
 It takes over the work of zwischenloesung.acme-tiny which must be run at least once as it is base on the preparations of that role and only repeats the recreation of the certificate once a month (so no ansible "master" etc. has to be involved later).
 
+STATUS
+------
+
+Development has moved to inofix.acme-\*
+
 Promise
 -------
 
